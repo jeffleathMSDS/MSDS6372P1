@@ -5,6 +5,8 @@
 
 # load packages
 library(readr)
+library(dataMaid)
+library(ggplot2)
 
 #Bring in dataset
 d1 <- read_csv("Source/hrdata.csv", col_types = cols(Grade = col_integer()))
@@ -12,7 +14,6 @@ d1 <- read_csv("Source/hrdata.csv", col_types = cols(Grade = col_integer()))
 #view data
 head(d1)
 str(d1)
-
 
 #Model 01
 sal01<-lm(Salary ~ Grade + Gender, data = d1)
@@ -34,6 +35,11 @@ lm.beta(sal02)
 # Confidence intervals
 confint(sal02)
 
-
 #----To compare the R2 in two models, use the ANOVA command---
 anova(sal01, sal02)
+
+
+## Codebook
+Human_Resource = read.csv("Source/hrdata.csv", header = TRUE)
+makeCodebook(Human_Resource)
+
